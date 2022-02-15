@@ -3,11 +3,11 @@ import { createContext, useCallback, useState } from "react";
 const initialState = {
   entries: [
     {
-      nom: "",
-      prénom: "",
-      ville: "",
-      adresse: "",
-      Âge: "",
+      nom: "Mohammed",
+      prénom: "Alaoui",
+      ville: "Paris",
+      adresse: "25 rue de la Paix",
+      Âge: "21",
     },
   ],
 };

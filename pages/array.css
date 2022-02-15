@@ -1,0 +1,12 @@
+.tableau {
+  border-collapse: collapse;
+  margin-left: 15rem;
+  width: 60rem;
+  height: 10rem;
+  background-color: white;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+
+.informations {
+  color: green;
+}

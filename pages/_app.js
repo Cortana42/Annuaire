@@ -1,5 +1,5 @@
-import "../styles/globals.css";
 import { InfoContextProvider } from "../components/InfoContext";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (

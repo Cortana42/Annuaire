@@ -22,12 +22,10 @@ const CustomTextInput = ({ label, ...props }) => {
 function Annuaire() {
   const { addEntry, entries } = useContext(InfoContext);
   const handleFormSubmit = useCallback(
-    (item, { resetForm }) => {
+    (item) => {
       addEntry(item);
-      resetForm();
-      console.log(entries);
     },
-    [addEntry, entries]
+    [addEntry]
   );
 
   const validationSchema = yup.object({
@@ -43,7 +41,11 @@ function Annuaire() {
       .required("ERREUR"),
     ville: yup.string().required("Required"),
     adresse: yup.string().required("Required"),
-    Âge: yup.number().required("required"),
+    Âge: yup
+      .string()
+      .matches(/^[0-9]+$/, "Must be only digits")
+      .max(3, "You can't be serious !")
+      .required("required"),
   });
 
   return (
@@ -54,52 +56,72 @@ function Annuaire() {
           prénom: "",
           ville: "",
           adresse: "",
-          Âge: 0,
+          Âge: "",
         }}
         validationSchema={validationSchema}
         onSubmit={handleFormSubmit}
       >
         {({ isSubmitting, isValid, handleSubmit }) => (
-          <Form noValidate onSubmit={handleSubmit}>
-            <h1>Sign Up</h1>
-            <CustomTextInput
-              label="Nom"
-              name="nom"
-              type="text"
-              placeholder="Nom"
-            />
-            <CustomTextInput
-              label="Prénom"
-              name="prénom"
-              type="text"
-              placeholder="Prénom"
-            />
-            <CustomTextInput
-              label="Ville"
-              name="ville"
-              type="text"
-              placeholder="Ville"
-            />
-            <CustomTextInput
-              label="Adresse"
-              name="adresse"
-              type="text"
-              placeholder="Adresse"
-            />
-            <CustomTextInput
-              label="Âge"
-              name="Âge"
-              type="text"
-              placeholder="Âge"
-            />
-            <Button type="submit" disabled={isSubmitting || !isValid}>
-              ADD
-            </Button>
+          <Form className="block" noValidate onSubmit={handleSubmit}>
+            <h1 className="italic text-4xl text-center mt-24 mb-24">Sign Up</h1>
+            <div className="block text-center ">
+              <div className="block">
+                <CustomTextInput
+                  className="ml-10 mb-10 shadow appearance-none border rounded w-200 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  label="Nom"
+                  name="nom"
+                  type="text"
+                  placeholder="Nom"
+                />
+                <br></br>
+                <CustomTextInput
+                  className="ml-10 mb-10 shadow appearance-none border rounded w-200 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  label="Prénom"
+                  name="prénom"
+                  type="text"
+                  placeholder="Prénom"
+                />
+              </div>
+              <div className="block">
+                <CustomTextInput
+                  className="ml-10 mb-10 shadow appearance-none border rounded w-200 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  label="Ville"
+                  name="ville"
+                  type="text"
+                  placeholder="Ville"
+                />
+                <br></br>
+                <CustomTextInput
+                  className="ml-10 mb-10 shadow appearance-none border rounded w-200 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  label="Adresse"
+                  name="adresse"
+                  type="text"
+                  placeholder="Adresse"
+                />
+                <br></br>
+              </div>
+              <CustomTextInput
+                className="ml-10 mb-10 shadow appearance-none border rounded w-100 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                label="Âge"
+                name="Âge"
+                type="text"
+                placeholder="Âge"
+              />
+              <br></br>
+              <Button type="submit" disabled={isSubmitting || !isValid}>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  ADD
+                </button>
+              </Button>
+              <br></br>
+            </div>
           </Form>
         )}
       </Formik>
       <Link href="/array">
-        <a>Array</a>
+        <a>
+          <ul>Array</ul>
+        </a>
       </Link>
     </>
   );
