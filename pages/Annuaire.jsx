@@ -118,7 +118,7 @@ function Annuaire() {
           </Form>
         )}
       </Formik>
-      <Link href="/array">
+      <Link href="/Array">
         <a>
           <button className="ml-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Information
