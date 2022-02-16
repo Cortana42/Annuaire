@@ -20,7 +20,7 @@ const CustomTextInput = ({ label, ...props }) => {
 };
 
 function Annuaire() {
-  const { addEntry, entries } = useContext(InfoContext);
+  const { addEntry } = useContext(InfoContext);
   const handleFormSubmit = useCallback(
     (item) => {
       addEntry(item);
